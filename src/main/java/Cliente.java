@@ -1,13 +1,18 @@
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
 public class Cliente {
     protected String nombre;
     protected int codigo;
+    protected int aleatorio;
     protected String direccion;
     protected String numeroMovil;
     protected String email;
 
     public Cliente() {}
-    public Cliente(String nombre) {
+    public Cliente(String nombre) throws NoSuchAlgorithmException{
         this.nombre = nombre;
+        aleatorio = generarAleatorio();
     }
 
     public String getNombre() {
@@ -48,5 +53,15 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    private int generarAleatorio() throws NoSuchAlgorithmException {
+        SecureRandom aleatorio = SecureRandom.getInstance("SHA1PRNG");
+        return aleatorio.nextInt(999999999);
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre Cliente: " + nombre + ", Código seguro ---[" + (codigo + aleatorio);
     }
 }
