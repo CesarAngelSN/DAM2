@@ -10,8 +10,15 @@ public class Cliente {
     protected String email;
 
     public Cliente() {}
+
     public Cliente(String nombre) throws NoSuchAlgorithmException{
         this.nombre = nombre;
+        aleatorio = generarAleatorio();
+    }
+
+    public Cliente(String nombre, int codigo) throws NoSuchAlgorithmException{
+        this.nombre = nombre;
+        this.codigo = codigo;
         aleatorio = generarAleatorio();
     }
 
@@ -57,11 +64,12 @@ public class Cliente {
 
     private int generarAleatorio() throws NoSuchAlgorithmException {
         SecureRandom aleatorio = SecureRandom.getInstance("SHA1PRNG");
-        return aleatorio.nextInt(999999999);
+        int random = aleatorio.nextInt(999999999) - 100;
+        return ((random + codigo) + "").length() != 9 ? generarAleatorio() : random;
     }
 
     @Override
     public String toString() {
-        return "Nombre Cliente: " + nombre + ", Código seguro ---[" + (codigo + aleatorio);
+        return "Nombre Cliente: " + nombre + ", Código seguro ---[" + (aleatorio) + "]";
     }
 }

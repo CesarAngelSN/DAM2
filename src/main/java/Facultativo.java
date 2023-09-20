@@ -1,3 +1,5 @@
+import java.security.NoSuchAlgorithmException;
+
 public class Facultativo extends Empleado{
     public final int tecnico = 1;
     public final int licenciado = 2;
@@ -7,7 +9,7 @@ public class Facultativo extends Empleado{
 
     public Facultativo() {}
 
-    public Facultativo(String nombre) {
+    public Facultativo(String nombre) throws NoSuchAlgorithmException {
         super(nombre);
     }
 
@@ -25,5 +27,10 @@ public class Facultativo extends Empleado{
 
     public void setEspecialidad(int especialidad) {
         this.especialidad = especialidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: [i] Facultativo " + nombre;
     }
 }

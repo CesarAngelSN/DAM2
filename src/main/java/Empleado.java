@@ -1,3 +1,4 @@
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 
 public class Empleado extends Cliente{
@@ -7,7 +8,7 @@ public class Empleado extends Cliente{
 
     public Empleado(){}
 
-    public Empleado(String nombre) {
+    public Empleado(String nombre) throws NoSuchAlgorithmException {
         super(nombre);
     }
 
@@ -39,5 +40,10 @@ public class Empleado extends Cliente{
 
     public void setFechaContrato(Calendar fechaContrato) {
         this.fechaContrato = fechaContrato;
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: [i] Empleado " + nombre;
     }
 }
